@@ -1,0 +1,6 @@
+- hosts: all
+  connection: local
+  any_errors_fatal: true
+  roles:
+    - apt
+    - openswitch
