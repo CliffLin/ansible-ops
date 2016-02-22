@@ -1,5 +1,4 @@
 ---
-
 - name: Install required package
   apt: name={{ item }} state=present
   with_items:
@@ -12,12 +11,12 @@
   user: name=ansible shell=/bin/bash
 
 - name: git clone ops
-  git: repo=https://git.openswitch.net/openswitch/ops-build dest=/tmp/ops-builder version=0.2.0
+  git: repo=https://git.openswitch.net/openswitch/ops-build dest=/tmp/ops-builder version={{OPS_VERSION}}
   become: yes
   become_user: ansible
 
 - name: make configure
-  command: make configure as5712
+  command: make configure {{MODULE}}
   args:
     chdir: /tmp/ops-builder
   become: yes
